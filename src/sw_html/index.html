@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!--meta - тег для данных док.
+      UTF-8 общий набор символов-->
+    <meta charset="UTF-8">
+    <title>Урок 1</title>
+    <!-- href - атрибут указующий путь -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<!-- id - уникальное имя, не может повторяться
+ class - это имя через которое можно обратиться к элементам через стили
+  div - блочный элемент -->
+<div id="container-1" class="container">
+    <h1> Самое большое заглавие, только один на сайт </h1>
+    <!-- span - тег для выделения небольшого кол-ва текста -->
+    <p><span class="attantion">Тег</span> для текста для браузера <b> Жирный текст </b></p>
+    <!-- a - тег указующий ссылку, гиперссылка, строчный элемент -->
+    <a href="#">Гиперссылка</a>
+    <!-- ol -нумерованный список
+     li - строка списка-->
+    <ol>
+        <li>Первая строка</li>
+        <li>Вторая строка</li>
+    </ol>
+    <!-- ul - не нумерованный список -->
+    <ul class="enums">
+        <li>Первая строка(не нумерованная)</li>
+        <li>Вторая строка(не нумерованная)</li>
+    </ul>
+</div>
+<div class="container" >
+    <!-- table - таблица
+     thead - шапка таблицы
+     tbody - тело таблицы
+     tfoot - низ таблицы(для бомжей)
+     tr - строка таблицы
+     th - жирная ячейка заглавия
+     td - ячейка
+     -->
+    <table class="pool">
+        <thead>
+        <tr>
+            <th>Расписание</th>
+            <th>Автобус 102</th>
+            <th>Троллейбус 36</th>
+            <th>Троллейбус 3</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Понедельник</td>
+            <td> 10:00</td>
+            <td> 11:00</td>
+            <td>12:00</td>
+        </tr>
+        <tr>
+            <td>Вторник</td>
+            <td>10:30</td>
+            <td>11:30</td>
+            <td>12:30</td>
+        </tr>
+        <tr>
+            <td>Среда</td>
+            <td>10:45</td>
+            <td>11:45</td>
+            <td>12:45</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <!-- colspan - объединение ячеек -->
+            <td>Cуббота</td>
+            <td colspan="3">Нету</td>
+        </tr>
+        <tr>
+            <td>Воскресение</td>
+            <td colspan="3">Нету</td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<div class="container">
+    <!-- form - форма
+     input - элемент формы
+     label - подпись к input
+     select - выпадающий список
+     option - элемент выпадающего списка
+     -->
+    <form>
+        <!-- submit - кнопка -->
+        <input type="text" name="name" placeholder="Имя" >
+        <input type="email" name="email" placeholder="Эл.адрес" >
+        <input type="number" name="number" placeholder="Телефон">
+        <input type="password" name="password" placeholder="Пароль">
+        <label>Пол</label>
+        <ul>
+            <li>
+                <!-- radio - флажки(можно выбрать только 1) -->
+                <input type="radio" name="gender" value="female" id="female">
+                <label for="female">Женщина</label>
+            </li>
+            <li>
+                <input type="radio" name="gender" value="male" id="male">
+                <label for="male">Мужчина</label>
+            </li>
+        </ul>
+        <label>Хобби</label>
+        <ul>
+            <li>
+                <!-- checkbox - флажки (можно выбрать несколько) -->
+                <input type="checkbox" name="hobby" id="read">
+                <label for="read">Читать</label>
+            </li>
+            <li>
+                <input type="checkbox" name="hobby" id="dans">
+                <label for="dans">Танцевать</label>
+            </li>
+            <li>
+                <input type="checkbox" name="hobby" id="play">
+                <label for="play">Играть</label>
+            </li>
+        </ul>
+        <input type="reset" name="Сбросить">
+        <input type="submit" name="Отправить">
+    </form>
+</div>
+</body>
+</html>

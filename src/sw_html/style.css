@@ -1,0 +1,36 @@
+#container-1,
+ .container {
+    width: 1200px;
+    background: #098;
+    margin: 0 auto;
+    padding: 10px
+}
+.enums li {
+    color: #0f0;
+}
+.attantion {
+    color: brown;
+    font-size: 24px;
+}
+.pool,
+.pool th,
+.pool td {
+    border:1px solid black;
+    border-spacing: 0;
+    text-align: center;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 250px
+}
+form input {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+form ul {
+    list-style: none;
+    padding-left: 0;
+
+}
