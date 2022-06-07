@@ -5,21 +5,21 @@ import sw_extends.warehouse.model.ByWeight;
 import sw_extends.warehouse.model.PieceByPiece;
 import sw_extends.warehouse.model.Product;
 import sw_extends.warehouse.views.GetOutput;
-import sw_extends.warehouse.views.Views;
+import sw_extends.warehouse.views.Input;
 import sw_extends.warehouse.utils.Rounder;
 
 
 public class ProductControls {
 
     protected Product model;
-    protected Views views;
+    protected Input views;
     protected PieceByPiece pieceModel;
     protected ByWeight weightModel;
     protected int choose;
     private final static String ROUND_PATTERN = "0.00";
     private final static String ROUND_PATTERN_WEIGHT = "0.00";
 
-    public ProductControls(Product model, Views views, PieceByPiece pieceModel, ByWeight weightModel) {
+    public ProductControls(Product model, Input views, PieceByPiece pieceModel, ByWeight weightModel) {
         this.model = model;
         this.views = views;
         this.pieceModel = pieceModel;

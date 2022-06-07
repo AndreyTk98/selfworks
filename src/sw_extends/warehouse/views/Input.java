@@ -7,20 +7,16 @@ import sw_extends.warehouse.utils.Validator;
 
 import java.util.Scanner;
 
-public class Views {
+public class Input {
 
     private String title;
-    protected String name;
-    protected double price;
-    protected int qunty;
-    protected double wright;
     private Scanner scanner;
     protected Product model;
     protected PieceByPiece pieceModel;
     protected ByWeight weightModel;
     private int choose;
 
-    public Views(Product model, PieceByPiece pieceModel, ByWeight weightModel) {
+    public Input(Product model, PieceByPiece pieceModel, ByWeight weightModel) {
         this.model = model;
         this.pieceModel = pieceModel;
         this.weightModel = weightModel;
@@ -32,12 +28,12 @@ public class Views {
 
         title = "Название: ";
         System.out.println(title);
-        name = Validator.validateName(scanner);
+        String name = Validator.validateName(scanner);
         model.setName(name);
 
         title = "Цена: ";
         System.out.println(title);
-        price = Validator.validatePriceInput(scanner);
+        double price = Validator.validatePriceInput(scanner);
         model.setPrice(price);
     }
 
@@ -45,7 +41,8 @@ public class Views {
         title = """
                 Вид товара:
                 1 - Поштучно
-                2 - На развес""";
+                2 - На развес
+                """;
 
         System.out.println(title);
         choose = Validator.validateChoose(scanner);
@@ -53,18 +50,16 @@ public class Views {
             switch (choose) {
                 case 1 -> {
                     System.out.println("Количество: ");
-                    qunty = Validator.validateQuantityInput(scanner);
+                    int qunty = Validator.validateQuantityInput(scanner);
                     pieceModel.setQuantity(qunty);
                 }
                 case 2 -> {
                     System.out.println("Вес(кг): ");
-                    wright = Validator.validatePriceInput(scanner);
+                    double wright = Validator.validatePriceInput(scanner);
                     weightModel.setWeight(wright);
                 }
             }
-        } else {
-            makeChoose();
-        }
+        } else makeChoose();
         scanner.close();
     }
 

@@ -2,7 +2,7 @@ package sw_extends.store.utils.validation;
 
 import java.util.Scanner;
 
-public class VaidateName {
+public class ValidateName {
 
     public static String validateName(Scanner scanner) {
         String str = scanner.nextLine().trim();

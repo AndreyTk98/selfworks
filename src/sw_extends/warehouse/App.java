@@ -4,7 +4,7 @@ import sw_extends.warehouse.controls.ProductControls;
 import sw_extends.warehouse.model.ByWeight;
 import sw_extends.warehouse.model.PieceByPiece;
 import sw_extends.warehouse.model.Product;
-import sw_extends.warehouse.views.Views;
+import sw_extends.warehouse.views.Input;
 
 public class App {
 
@@ -17,7 +17,7 @@ public class App {
         Product product = new Product(name, price);
         PieceByPiece piece = new PieceByPiece(name, price, qunty);
         ByWeight byWeight = new ByWeight(name,price,weight);
-        Views views = new Views(product,piece,byWeight);
+        Input views = new Input(product,piece,byWeight);
         ProductControls controls = new ProductControls(product, views, piece, byWeight);
         controls.run();
 
