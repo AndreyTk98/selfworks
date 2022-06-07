@@ -17,7 +17,7 @@ public class ProductControls {
     protected ByWeight weightModel;
     protected int choose;
     private final static String ROUND_PATTERN = "0.00";
-    private final static String ROUND_PATTERN_WEIGHT = "0.00";
+    private final static String ROUND_PATTERN_WEIGHT = "0.000";
 
     public ProductControls(Product model, Input views, PieceByPiece pieceModel, ByWeight weightModel) {
         this.model = model;
@@ -37,14 +37,14 @@ public class ProductControls {
                 Calc calc = new Calc();
                 cost = calc.calcQuntyCost(model.getPrice(), pieceModel.getQuantity());
                 GetOutput.getQuntyOutput(model.getName(),  Rounder.rounder(cost, ROUND_PATTERN),
-                        pieceModel.getQuantity(), Rounder.rounder(model.getPrice(), ROUND_PATTERN_WEIGHT));
+                        pieceModel.getQuantity(), Rounder.rounder(model.getPrice(), ROUND_PATTERN));
             }
-            case 2 ->{
+            case 2 -> {
                 Calc calc = new Calc();
                 cost = calc.calcWeightCost(model.getPrice(), weightModel.getWeight());
                 GetOutput.getWeightOutput(model.getName(), Rounder.rounder(cost, ROUND_PATTERN),
                         Rounder.rounder(weightModel.getWeight(), ROUND_PATTERN_WEIGHT),
-                        Rounder.rounder(model.getPrice(), ROUND_PATTERN_WEIGHT));
+                        Rounder.rounder(model.getPrice(), ROUND_PATTERN));
             }
         }
     }

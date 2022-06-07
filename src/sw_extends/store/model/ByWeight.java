@@ -4,8 +4,8 @@ public class ByWeight extends Product {
 
     private double weight;
 
-    public ByWeight(double price, String name, double weight) {
-        super(price, name);
+    public ByWeight(String name, double price, double weight) {
+        super(name, price);
         this.weight = weight;
     }
 

@@ -4,8 +4,8 @@ public class Apiece extends Product {
 
     private int quantity;
 
-    public Apiece(double price, String name, int quantity) {
-        super(price, name);
+    public Apiece(String name, double price, int quantity) {
+        super(name, price);
         this.quantity = quantity;
     }
 
