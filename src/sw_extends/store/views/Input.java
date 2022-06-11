@@ -1,7 +1,7 @@
 package sw_extends.store.views;
 
 import sw_extends.store.model.Apiece;
-import sw_extends.store.utils.validation.*;
+import sw_extends.order.utilits.validation.*;
 import sw_extends.store.model.ByWeight;
 import sw_extends.store.model.Product;
 
