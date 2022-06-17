@@ -37,7 +37,7 @@ public class Input {
 
         title = "Цена: ";
         System.out.println(title);
-        double price = ValidatePrice.validatePriceInput(scanner);
+        double price = ValidateDoubleValue.validateDoubleValue(scanner, 1);
         model.setPrice(price);
     }
 
@@ -48,17 +48,17 @@ public class Input {
                 2 - На развес
                 """;
         System.out.println(title);
-        choose = ValidateChose.validateChose(scanner);
+        choose = ValidateIntValue.validateIntValue(scanner, 1);
         if (choose > 0 & choose < 3) {
                 switch (choose) {
                     case 1 -> {
                         System.out.println("Количество: ");
-                        int quantity = ValidateQuantity.validateQuantityInput(scanner);
+                        int quantity = ValidateIntValue.validateIntValue(scanner, 2);
                         apieceModel.setQuantity(quantity);
                     }
                     case 2 -> {
                         System.out.println("Вес(кг): ");
-                        double weight = ValidateWeight.validateWeightInput(scanner);
+                        double weight = ValidateDoubleValue.validateDoubleValue(scanner, 1);
                         weightModel.setWeight(weight);
                     }
                 }

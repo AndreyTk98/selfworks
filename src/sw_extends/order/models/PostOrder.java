@@ -2,28 +2,40 @@ package sw_extends.order.models;
 
 public class PostOrder extends Order {
 
-    private double PostalRate;
-    private int PostType;
+    private double postalRate;
+    private int deliveryRegion;
+    private int postsType;
 
-    public PostOrder(double price, double [] weight, int quantity, double postalRate, int deliveryRegion) {
+
+    public PostOrder
+            (double price, double [] weight, int quantity, double postalRate, int deliveryRegion, int postsType) {
         super(price, weight, quantity);
-        PostalRate = postalRate;
-        this.PostType = deliveryRegion;
+        this.postalRate = postalRate;
+        this.deliveryRegion = deliveryRegion;
+        this.postsType = postsType;
     }
 
     public double getPostalRate() {
-        return PostalRate;
+        return postalRate;
     }
 
     public void setPostalRate(double postalRate) {
-        PostalRate = postalRate;
+        this.postalRate = postalRate;
     }
 
-    public int getPostType() {
-        return PostType;
+    public int getDeliveryRegion() {
+        return deliveryRegion;
     }
 
-    public void setPostType(int postType) {
-        this.PostType = postType;
+    public void setDeliveryRegion(int deliveryRegion) {
+        this.deliveryRegion = deliveryRegion;
+    }
+
+    public int getPostsType() {
+        return postsType;
+    }
+
+    public void setPostsType(int postsType) {
+        this.postsType = postsType;
     }
 }

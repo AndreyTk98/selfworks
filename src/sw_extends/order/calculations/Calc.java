@@ -9,33 +9,35 @@ import sw_extends.order.regions.Price_region;
 public class Calc implements CalcBaseOrderCost, CalcFastDeliveryCharge, FindsPostRate {
 
     @Override
-    public double calcCost(int allWeights, double price) {
-        return allWeights * price;
+    public double calcCost(double[] weights, double price) {
+        double allWeight;
+        allWeight = 0;
+        for (double i : weights) {
+            allWeight += i;
+        }
+        return allWeight * price;
     }
 
     @Override
     public double calcFastOrderCost(double range) {
         double fastDeliveryCharge;
-        if (range < 2000) {
+        if (range < 20) {
             fastDeliveryCharge = 0.05;
             return fastDeliveryCharge;
-        } else if (range >= 2000 & range < 5000) {
+        } else if (range >= 20 & range < 50) {
             fastDeliveryCharge = 0.08;
             return fastDeliveryCharge;
-        } else if (range >= 5000 & range <= 20000) {
+        } else {
             fastDeliveryCharge = 0.1;
             return fastDeliveryCharge;
-        } else {
-            System.out.println("Слишком далеко");
-            return calcFastOrderCost(range);
         }
     }
 
     @Override
-    public double findsPostRate(int type, Price_region region, Price_continent continent) {
+    public double findsPostRate(int PostsType, Price_region region, Price_continent continent) {
         double postRate;
         postRate = 0;
-        switch (type) {
+        switch (PostsType) {
             case 1 -> {
                 switch (region) {
                     case INSIDE_THE_CITY -> postRate = Price_region.INSIDE_THE_CITY.getPriceRegion();
