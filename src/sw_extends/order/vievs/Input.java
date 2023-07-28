@@ -64,7 +64,7 @@ public class Input {
                     Межнациональная доставка(10$ за кг) + наценка в зависимости от континента
                 """;
         deliveryType = ValidateIntValue.validateIntValue(scanner, 1);
-        if (deliveryType > 0 & deliveryType < 3) {
+        if (deliveryType > 0 & deliveryType <=3) {
             switch (deliveryType) {
                 case 1 -> {
                     price = 5;
