@@ -1,6 +1,6 @@
 package sw_extends.store;
 
-import sw_extends.store.controls.Controls;
+import sw_extends.store.controls.controls;
 import sw_extends.store.model.Apiece;
 import sw_extends.store.model.ByWeight;
 import sw_extends.store.model.Product;
@@ -18,7 +18,7 @@ public class App {
         Apiece apiece = new Apiece(name, price, quantity);
         ByWeight byWeight = new ByWeight(name, price, weight);
         Input views = new Input(product, byWeight, apiece);
-        Controls controls = new Controls(product, apiece, byWeight, views);
+        controls controls = new controls(product, apiece, byWeight, views);
         controls.run();
     }
 }

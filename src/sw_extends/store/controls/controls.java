@@ -8,17 +8,16 @@ import sw_extends.order.utilits.rounder.Rounder;
 import sw_extends.store.views.Input;
 import sw_extends.store.views.Output;
 
-public class Controls {
+public class controls {
 
     protected Product model;
     protected Apiece pieceModel;
     protected ByWeight weightModel;
     protected Input views;
-    protected int choose;
     private final static String ROUND_PATTERN_MONEY = "0.00";
     private final static String ROUND_PATTERN_WEIGHT = "0.000";
 
-    public Controls(Product model, Apiece pieceModel, ByWeight weightModel, Input views) {
+    public controls(Product model, Apiece pieceModel, ByWeight weightModel, Input views) {
         this.model = model;
         this.pieceModel = pieceModel;
         this.weightModel = weightModel;
@@ -26,6 +25,7 @@ public class Controls {
     }
 
     public void run() {
+        int choose;
         views.runInput();
         choose = views.getChoose();
         double cost;
