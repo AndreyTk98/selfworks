@@ -28,7 +28,6 @@ public class SwitchOrder {
 
     public void makeSwitchOrder(Scanner scanner, int deliveryType) {
         double price;
-        int postType;
         switch (deliveryType) {
             case 1 -> {
                 price = 5;
