@@ -19,6 +19,8 @@ public class Input {
     private int deliveryType;
     double[] weights;
 
+    private SwitchOrder switchOrder;
+
     public Input(Cargo cargo, Order order, FastOrder fastOrder, PostOrder postOrder) {
         this.cargo = cargo;
         this.order = order;
@@ -41,11 +43,13 @@ public class Input {
         cargo.setName(name);
 
         title = "Количество посылок: ";
+        System.out.println(title);
         int quantity = ValidateIntValue.validateIntValue(scanner, 2);
         weights = new double[quantity];
         order.setQuantity(quantity);
 
         title = "Вес каждой посылки: ";
+        System.out.println(title);
         for (i = 0; i < quantity; ++i) {
             System.out.println("Посылка №" + (1 + i));
             weights[i] = ValidateDoubleValue.validateDoubleValue(scanner, 2);
@@ -59,49 +63,20 @@ public class Input {
         title = """
                 Выберете доставщика:
                 1 - Национальная почта, 5$ за кг груза
-                2 - Курьер, стандпртная оплата + процент от дальности доставки(только в Рамках города(не более 20км)
-                3 - Частная почта, внутри страны(8$ а кг) + наценка за расстоние
+                2 - Курьер, стандартная оплата + процент от дальности доставки(только в Рамках города(не более 20км)
+                3 - Частная почта, внутри страны(8$ а кг) + наценка за расстояние
                     Межнациональная доставка(10$ за кг) + наценка в зависимости от континента
                 """;
+        System.out.println(title);
         deliveryType = ValidateIntValue.validateIntValue(scanner, 1);
         if (deliveryType > 0 & deliveryType <=3) {
-            switch (deliveryType) {
-                case 1 -> {
-                    price = 5;
-                    order.setPrice(price);
-                }
-                case 2 -> {
-                    price = 5;
-                    fastOrder.setPrice(price);
-                    title = "Введите расстояние(км): ";
-                    double range = ValidateDoubleValue.validateDoubleValue(scanner, 3);
-                    if (range > 20) {
-                        title = "Слишком далеко, выберете другой тип доставки";
-                        System.out.println();
-                        chooseOrder();
-                    }
-                    fastOrder.setRange(range);
-                }
-                case 3 -> {
-                    title = """
-                            1 - Внутри страны
-                            2 - Межнациональная доставка
-                            """;
-                    postType = ValidateIntValue.validateIntValue(scanner, 1);
-                    postOrder.setPostsType(postType);
-                    switch (postType) {
-                        case 1 -> {
-                            price = 8;
-                            postOrder.setPrice(price);
-                        }
-                        case 2 -> {
-                            price = 10;
-                            postOrder.setPrice(price);
-                        }
-                    }
-                }
-            }
+            switchOrder.makeSwitchOrder(scanner, deliveryType);
+        } else {
+            title = "Выберете 1, 2 или 3";
+            System.out.println(title);
+            chooseOrder();
         }
+        scanner.close();
     }
 
     public int getDeliveryType() {

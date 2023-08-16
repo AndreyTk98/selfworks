@@ -62,7 +62,11 @@ public class Input {
                         weightModel.setWeight(weight);
                     }
                 }
-        } else makeChoose();
+        } else {
+            title = "Выберете между 1 или 2";
+            System.out.println(title);
+            makeChoose();
+        }
         scanner.close();
     }
 

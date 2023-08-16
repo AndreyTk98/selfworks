@@ -24,7 +24,7 @@ public class Order {
         return weight;
     }
 
-    public void setWeight(double weight[]) {
+    public void setWeight(double[] weight) {
         this.weight = weight;
     }
 

@@ -8,7 +8,7 @@ import sw_extends.order.utilits.rounder.Rounder;
 import sw_extends.store.views.Input;
 import sw_extends.store.views.Output;
 
-public class controls {
+public class Controls {
 
     protected Product model;
     protected Apiece pieceModel;
@@ -17,7 +17,7 @@ public class controls {
     private final static String ROUND_PATTERN_MONEY = "0.00";
     private final static String ROUND_PATTERN_WEIGHT = "0.000";
 
-    public controls(Product model, Apiece pieceModel, ByWeight weightModel, Input views) {
+    public Controls(Product model, Apiece pieceModel, ByWeight weightModel, Input views) {
         this.model = model;
         this.pieceModel = pieceModel;
         this.weightModel = weightModel;
