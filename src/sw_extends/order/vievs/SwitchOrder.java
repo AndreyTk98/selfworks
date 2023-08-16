@@ -29,10 +29,12 @@ public class SwitchOrder {
     public void makeSwitchOrder(Scanner scanner, int deliveryType) {
         double price;
         switch (deliveryType) {
+            // Стандартный заказ
             case 1 -> {
                 price = 5;
                 order.setPrice(price);
             }
+            // Заказ Курьером
             case 2 -> {
                 price = 5;
                 fastOrder.setPrice(price);
@@ -45,13 +47,17 @@ public class SwitchOrder {
                 }
                 fastOrder.setRange(range);
             }
+            // Срочный заказ
             case 3 -> {
+                // Разбитие на типы по дальности(страна или континент)
                 SwitchPostType switchPostType = new SwitchPostType();
                 switchPostType.makePostType(scanner);
                 }
             }
         }
         class SwitchPostType {
+
+        // Реализация срочной доставки
             public void makePostType(Scanner scanner) {
                 title = """
                         1 - Внутри страны
@@ -63,10 +69,12 @@ public class SwitchOrder {
                 double price;
                 if (postType > 0 & postType < 3) {
                 switch (postType) {
+                    // Заказ внутри страны
                     case 1 -> {
                         price = 8;
                         postOrder.setPrice(price);
                     }
+                    // Заказ на другие континенты
                     case 2 -> {
                         price = 10;
                         postOrder.setPrice(price);
