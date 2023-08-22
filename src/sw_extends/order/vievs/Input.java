@@ -1,9 +1,7 @@
 package sw_extends.order.vievs;
 
 import sw_extends.order.models.Cargo;
-import sw_extends.order.models.FastOrder;
 import sw_extends.order.models.Order;
-import sw_extends.order.models.PostOrder;
 import sw_extends.order.utilits.validation.*;
 
 import java.util.Scanner;
@@ -13,18 +11,13 @@ public class Input {
     private Scanner scanner;
     protected Cargo cargo;
     protected Order order;
-    protected FastOrder fastOrder;
-    protected PostOrder postOrder;
     private String title;
     private int deliveryType;
-    double[] weights;
     private final OrderType orderType;
 
-    public Input(Cargo cargo, Order order, FastOrder fastOrder, PostOrder postOrder, OrderType orderType) {
+    public Input(Cargo cargo, Order order, OrderType orderType) {
         this.cargo = cargo;
         this.order = order;
-        this.fastOrder = fastOrder;
-        this.postOrder = postOrder;
         this.orderType = orderType;
     }
 
@@ -34,6 +27,7 @@ public class Input {
     }
 
     private void doInput() {
+
         int i;
 
         scanner = new Scanner(System.in);
@@ -45,7 +39,7 @@ public class Input {
         title = "Количество посылок: ";
         System.out.println(title);
         int quantity = ValidateIntValue.validateIntValue(scanner, 2);
-        weights = new double[quantity];
+        double[] weights = new double[quantity];
         order.setQuantity(quantity);
 
         title = "Вес каждой посылки: ";
