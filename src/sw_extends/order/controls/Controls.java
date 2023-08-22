@@ -5,7 +5,7 @@ import sw_extends.order.models.FastOrder;
 import sw_extends.order.models.Order;
 import sw_extends.order.models.PostOrder;
 import sw_extends.order.vievs.Input;
-import sw_extends.order.vievs.SwitchOrder;
+import sw_extends.order.vievs.OrderType;
 
 public class Controls {
 
@@ -21,13 +21,13 @@ public class Controls {
 
     protected int deliveryType;
 
-    protected SwitchOrder choose;
+    protected OrderType choose;
     private final static String ROUND_PATTERN_MONEY = "0.00";
 
     private final static String ROUND_PATTERN_WEIGHT = "0.000";
 
     public Controls(Cargo cargoModel, Order orderModel, FastOrder fastOrder,
-                    PostOrder postOrder, Input views, int deliveryType, SwitchOrder choose) {
+                    PostOrder postOrder, Input views, int deliveryType, OrderType choose) {
         this.cargoModel = cargoModel;
         this.orderModel = orderModel;
         this.fastOrder = fastOrder;

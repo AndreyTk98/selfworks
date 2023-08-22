@@ -8,7 +8,7 @@ import sw_extends.order.utilits.validation.ValidateIntValue;
 
 import java.util.Scanner;
 
-public class SwitchOrder {
+public class OrderType {
 
     protected Order order;
 
@@ -20,12 +20,13 @@ public class SwitchOrder {
 
     private int postType;
 
-    public SwitchOrder(Order order, FastOrder fastOrder, PostOrder postOrder) {
+    public OrderType(Order order, FastOrder fastOrder, PostOrder postOrder) {
         this.order = order;
         this.fastOrder = fastOrder;
         this.postOrder = postOrder;
     }
 
+    // Основное Разветвление
     public void makeSwitchOrder(Scanner scanner, int deliveryType) {
         double price;
         switch (deliveryType) {
@@ -36,11 +37,11 @@ public class SwitchOrder {
             }
             // Заказ Курьером
             case 2 -> {
-                price = 5;
+                price = 6;
                 fastOrder.setPrice(price);
                 title = "Введите расстояние(км): ";
                 double range = ValidateDoubleValue.validateDoubleValue(scanner, 3);
-                if (range > 20) {
+                if (range >= 40) {
                     title = "Слишком далеко, выберете другой тип доставки";
                     System.out.println(title);
                     makeSwitchOrder(scanner, deliveryType);

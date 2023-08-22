@@ -18,14 +18,14 @@ public class Input {
     private String title;
     private int deliveryType;
     double[] weights;
+    private final OrderType orderType;
 
-    private SwitchOrder switchOrder;
-
-    public Input(Cargo cargo, Order order, FastOrder fastOrder, PostOrder postOrder) {
+    public Input(Cargo cargo, Order order, FastOrder fastOrder, PostOrder postOrder, OrderType orderType) {
         this.cargo = cargo;
         this.order = order;
         this.fastOrder = fastOrder;
         this.postOrder = postOrder;
+        this.orderType = orderType;
     }
 
     public void runInput() {
@@ -58,8 +58,6 @@ public class Input {
     }
 
     private void chooseOrder() {
-        double price;
-        int postType;
         title = """
                 Выберете доставщика:
                 1 - Национальная почта, 5$ за кг груза
@@ -70,7 +68,7 @@ public class Input {
         System.out.println(title);
         deliveryType = ValidateIntValue.validateIntValue(scanner, 1);
         if (deliveryType > 0 & deliveryType <=3) {
-            switchOrder.makeSwitchOrder(scanner, deliveryType);
+            orderType.makeSwitchOrder(scanner, deliveryType);
         } else {
             title = "Выберете 1, 2 или 3";
             System.out.println(title);

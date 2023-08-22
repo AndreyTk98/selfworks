@@ -1,15 +1,16 @@
 package sw_extends.order.calculations;
 
 import sw_extends.order.base.CalcBaseOrderCost;
-import sw_extends.order.base.CalcFastDeliveryCharge;
-import sw_extends.order.base.FindsPostRate;
+import sw_extends.order.base.CalcCourierDeliveryRate;
+import sw_extends.order.base.CalcFinalDeliveryCost;
+import sw_extends.order.base.FindsFastPostRateCost;
 import sw_extends.order.regions.Price_continent;
 import sw_extends.order.regions.Price_region;
 
-public class Calc implements CalcBaseOrderCost, CalcFastDeliveryCharge, FindsPostRate {
+public class Calc implements CalcBaseOrderCost, CalcCourierDeliveryRate, FindsFastPostRateCost, CalcFinalDeliveryCost {
 
     @Override
-    public double calcCost(double[] weights, double price) {
+    public double calcCost(double [] weights, double price) {
         double allWeight;
         allWeight = 0;
         for (double i : weights) {
@@ -19,22 +20,22 @@ public class Calc implements CalcBaseOrderCost, CalcFastDeliveryCharge, FindsPos
     }
 
     @Override
-    public double calcFastOrderCost(double range) {
-        double fastDeliveryCharge;
-        if (range < 20) {
-            fastDeliveryCharge = 0.05;
-            return fastDeliveryCharge;
-        } else if (range >= 20 & range < 50) {
-            fastDeliveryCharge = 0.08;
-            return fastDeliveryCharge;
+    public double calcCourierOrderCountryRate(double range) {
+        double fastDeliveryRate;
+        if (range <= 5) {
+            fastDeliveryRate = 0.5;
+            return fastDeliveryRate;
+        } else if (range > 5 & range <= 25) {
+            fastDeliveryRate = 0.8;
+            return fastDeliveryRate;
         } else {
-            fastDeliveryCharge = 0.1;
-            return fastDeliveryCharge;
+            fastDeliveryRate = 0.10;
+            return fastDeliveryRate;
         }
     }
 
     @Override
-    public double findsPostRate(int PostsType, Price_region region, Price_continent continent) {
+    public double findsFastPostRate(int PostsType, Price_region region, Price_continent continent) {
         double postRate;
         postRate = 0;
         switch (PostsType) {
@@ -52,11 +53,18 @@ public class Calc implements CalcBaseOrderCost, CalcFastDeliveryCharge, FindsPos
                     case SOUTH_AMERICA -> postRate = Price_continent.SOUTH_AMERICA.getPriceContinent();
                     case ASIA -> postRate = Price_continent.ASIA.getPriceContinent();
                     case AFRICA -> postRate = Price_continent.AFRICA.getPriceContinent();
-                    case OTHER_EU_COUNTRIES -> postRate = Price_continent.OTHER_EU_COUNTRIES.getPriceContinent();
+                    case OTHER_EUROPEAN_COUNTRIES -> postRate =
+                            Price_continent.OTHER_EUROPEAN_COUNTRIES.getPriceContinent();
                 }
             }
         }
         return postRate;
     }
+
+    @Override
+    public double calcFinalDeliveryCost(double fullCost, double rate) {
+        return fullCost * rate;
+    }
+
 }
 
