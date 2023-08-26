@@ -1,12 +1,13 @@
 package sw_extends.order.models;
 
-public class Order {
+public class Order extends Cargo {
 
     private double price;
     private double [] weight;
     private int quantity;
 
-    public Order(double price, double [] weight, int quantity) {
+    public Order (String name, double price, double [] weight, int quantity) {
+        super(name);
         this.price = price;
         this.weight = weight;
         this.quantity = quantity;

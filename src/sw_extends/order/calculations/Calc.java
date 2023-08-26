@@ -9,9 +9,9 @@ import sw_extends.order.regions.Price_region;
 
 public class Calc implements CalcBaseOrderCost, CalcCourierDeliveryRate, FindsFastPostRateCost, CalcFinalDeliveryCost {
 
+    private double allWeight;
     @Override
     public double calcCost(double [] weights, double price) {
-        double allWeight;
         allWeight = 0;
         for (double i : weights) {
             allWeight += i;
@@ -40,6 +40,7 @@ public class Calc implements CalcBaseOrderCost, CalcCourierDeliveryRate, FindsFa
         postRate = 0;
         switch (PostsType) {
             case 1 -> {
+
                 switch (region) {
                     case INSIDE_THE_CITY -> postRate = Price_region.INSIDE_THE_CITY.getPriceRegion();
                     case INSIDE_THE_REGION -> postRate = Price_region.INSIDE_THE_REGION.getPriceRegion();
@@ -62,9 +63,12 @@ public class Calc implements CalcBaseOrderCost, CalcCourierDeliveryRate, FindsFa
     }
 
     @Override
-    public double calcFinalDeliveryCost(double fullCost, double rate) {
-        return fullCost * rate;
+    public double calcFinalDeliveryCost(double Cost, double rate) {
+        return (Cost * rate) + Cost;
     }
 
+    public double getAllWeight() {
+        return allWeight;
+    }
 }
 

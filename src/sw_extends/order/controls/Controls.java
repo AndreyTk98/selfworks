@@ -1,45 +1,67 @@
 package sw_extends.order.controls;
 
+import sw_extends.order.calculations.Calc;
 import sw_extends.order.models.Cargo;
 import sw_extends.order.models.FastOrder;
 import sw_extends.order.models.Order;
 import sw_extends.order.models.PostOrder;
+import sw_extends.order.vievs.CountryOrderType;
 import sw_extends.order.vievs.Input;
 import sw_extends.order.vievs.OrderType;
+import sw_extends.order.vievs.Outputs;
 
 public class Controls {
 
-    protected Cargo cargoModel;
+    private final Cargo cargo;
+    private final FastOrder fastOrder;
+    private final Order order;
+    private final PostOrder postOrder;
+    private final Input input;
+    private final OrderType orderType;
 
-    protected Order orderModel;
-
-    protected FastOrder fastOrder;
-
-    protected PostOrder postOrder;
-
-    protected Input views;
-
-    protected int deliveryType;
-
-    protected OrderType choose;
-    private final static String ROUND_PATTERN_MONEY = "0.00";
-
-    private final static String ROUND_PATTERN_WEIGHT = "0.000";
-
-    public Controls(Cargo cargoModel, Order orderModel, FastOrder fastOrder,
-                    PostOrder postOrder, Input views, int deliveryType, OrderType choose) {
-        this.cargoModel = cargoModel;
-        this.orderModel = orderModel;
+    public Controls(Cargo cargo, FastOrder fastOrder, Order order, PostOrder postOrder,
+                    Input input, OrderType orderType) {
+        this.cargo = cargo;
         this.fastOrder = fastOrder;
+        this.order = order;
         this.postOrder = postOrder;
-        this.views = views;
-        this.deliveryType = deliveryType;
-        this.choose = choose;
+        this.input = input;
+        this.orderType = orderType;
     }
 
-    public void run () {
-        views.runInput();
-        int deliveryType = views.getDeliveryType();
-        int postType = choose.getPostType();
+    public void run (){
+        input.runInput();
+        double cost;
+        double fullCost;
+        double fastDeliveryRate;
+        Calc calc = new Calc();
+        switch (input.getDeliveryType()) {
+            case 1 -> {
+                cost = calc.calcCost(order.getWeight(), order.getPrice());
+                Outputs.getOutputsSimpleOrder(cargo .getName(), orderType.getOrderType(), order.getQuantity(),
+                        calc.getAllWeight(), cost);
+            }
+            case 2 -> {
+                cost = calc.calcCost(order.getWeight(), order.getPrice());
+                fastDeliveryRate = calc.calcCourierOrderCountryRate(fastOrder.getRange());
+                fullCost = calc.calcFinalDeliveryCost(cost, fastDeliveryRate);
+                Outputs.getOutputsSimpleOrder(cargo.getName(), orderType.getOrderType(), order.getQuantity(),
+                        calc.getAllWeight(), fullCost);
+            }
+            case 3 -> {
+
+                switch (orderType.getPostType()) {
+                    case 1 -> {
+                        CountryOrderType countryOrderType = new CountryOrderType();
+                        cost = calc.calcCost(order.getWeight(), order.getPrice());
+                        countryOrderType.doSwitchCountryOrderType();
+
+
+                    }
+                }
+            }
+        }
     }
+
+
 }

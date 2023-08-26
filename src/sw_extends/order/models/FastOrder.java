@@ -6,8 +6,8 @@ public class FastOrder extends Order {
     private double fastDeliveryCharge;
     private double range;
 
-    public FastOrder(double price, double [] weight, int quantity, double fastDeliveryCharge, double range) {
-        super(price, weight, quantity);
+    public FastOrder(String name, double price, double [] weight, int quantity, double fastDeliveryCharge, double range) {
+        super(name, price, weight, quantity);
         this.fastDeliveryCharge = fastDeliveryCharge;
         this.range = range;
     }

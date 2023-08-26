@@ -8,8 +8,8 @@ public class PostOrder extends Order {
 
 
     public PostOrder
-            (double price, double [] weight, int quantity, double postalRate, int deliveryRegion, int postsType) {
-        super(price, weight, quantity);
+            (String name, double price, double [] weight, int quantity, double postalRate, int deliveryRegion, int postsType) {
+        super(name, price, weight, quantity);
         this.postalRate = postalRate;
         this.deliveryRegion = deliveryRegion;
         this.postsType = postsType;

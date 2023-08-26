@@ -31,7 +31,7 @@ public class Input {
         int i;
 
         scanner = new Scanner(System.in);
-        title = "Названия посылки: ";
+        title = "Наименование посылок: ";
         System.out.println(title);
         String name = ValidateName.validateName(scanner);
         cargo.setName(name);
@@ -55,12 +55,13 @@ public class Input {
         title = """
                 Выберете доставщика:
                 1 - Национальная почта, 5$ за кг груза
-                2 - Курьер, стандартная оплата + процент от дальности доставки(только в Рамках города(не более 20км)
-                3 - Частная почта, внутри страны(8$ а кг) + наценка за расстояние
+                2 - Курьер, 6$ за кг + процент от дальности доставки(только в Рамках города(не более 20км)
+                3 - Частная почтовая организация, внутри страны(8$ а кг) + наценка за расстояние
                     Межнациональная доставка(10$ за кг) + наценка в зависимости от континента
                 """;
         System.out.println(title);
         deliveryType = ValidateIntValue.validateIntValue(scanner, 1);
+        scanner.close();
         if (deliveryType > 0 & deliveryType <=3) {
             orderType.makeSwitchOrder(scanner, deliveryType);
         } else {
@@ -68,7 +69,6 @@ public class Input {
             System.out.println(title);
             chooseOrder();
         }
-        scanner.close();
     }
 
     public int getDeliveryType() {

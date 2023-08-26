@@ -20,4 +20,5 @@ public enum Price_region {
     public String getNameRegion() {
         return this.nameRegion;
     }
+
 }
