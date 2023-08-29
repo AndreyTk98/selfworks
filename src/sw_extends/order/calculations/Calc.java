@@ -4,16 +4,21 @@ import sw_extends.order.base.*;
 import sw_extends.order.regions.Price_continent;
 import sw_extends.order.regions.Price_region;
 
-public class Calc implements CalcBaseOrderCost, CalcCourierDeliveryRate, FindsCountryPostRateCost,
-        CalcFinalDeliveryCost, FindsContinentsPostRateCost {
+public class Calc implements CalcAllWeight, CalcCourierDeliveryRate, FindsCountryPostRateCost,
+        CalcFinalDeliveryCost, FindsContinentsPostRateCost, CalcCost {
 
     private double allWeight;
     @Override
-    public double calcCost(double [] weights, double price) {
+    public double calcAllWeight(double [] weights) {
         allWeight = 0;
         for (double i : weights) {
             allWeight += i;
         }
+        return allWeight;
+    }
+
+    @Override
+    public double calcCost(double allWeight, double price) {
         return allWeight * price;
     }
 
@@ -61,10 +66,6 @@ public class Calc implements CalcBaseOrderCost, CalcCourierDeliveryRate, FindsCo
     @Override
     public double calcFinalDeliveryCost(double Cost, double rate) {
         return (Cost * rate) + Cost;
-    }
-
-    public double getAllWeight() {
-        return allWeight;
     }
 }
 

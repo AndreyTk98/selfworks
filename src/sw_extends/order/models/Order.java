@@ -36,4 +36,5 @@ public class Order extends Cargo {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 }

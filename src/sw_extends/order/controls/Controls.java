@@ -29,51 +29,43 @@ public class Controls {
         this.postOrder = postOrder;
     }
 
-    public void run (){
+    public void run() {
         input.runInput();
-        double cost;
-        double fullCost;
-        double rate;
         Calc calc = new Calc();
         switch (postOrder.getDeliveryType()) {
-            case 1 -> {
-                cost = calc.calcCost(order.getWeight(), order.getPrice());
-                Outputs.getOutputsSimpleOrder(cargo.getName(), orderType.getOrderType(), order.getQuantity(),
-                        Rounder.rounder(calc.getAllWeight(), ROUND_PATTERN_WEIGHT),
-                        Rounder.rounder(cost, ROUND_PATTERN));
-            }
-            case 2 -> {
-                cost = calc.calcCost(order.getWeight(), order.getPrice());
-                rate = calc.calcCourierOrderCountryRate(fastOrder.getRange());
-                fullCost = calc.calcFinalDeliveryCost(cost, rate);
-                Outputs.getOutputsSimpleOrder(cargo.getName(), orderType.getOrderType(), order.getQuantity(),
-                        Rounder.rounder(calc.getAllWeight(), ROUND_PATTERN_WEIGHT),
-                        Rounder.rounder(fullCost, ROUND_PATTERN));
-            }
+            case 1 -> Outputs.getOutputsSimpleOrder(cargo.getName(), orderType.getOrderType(), order.getQuantity(),
+                    Rounder.rounder(calc.calcAllWeight(order.getWeight()), ROUND_PATTERN_WEIGHT),
+                    Rounder.rounder(calc.calcCost(calc.calcAllWeight(order.getWeight()),
+                            order.getPrice()), ROUND_PATTERN));
+            case 2 -> Outputs.getOutputsSimpleOrder(cargo.getName(), orderType.getOrderType(), order.getQuantity(),
+                    Rounder.rounder(calc.calcAllWeight(order.getWeight()), ROUND_PATTERN_WEIGHT),
+                    Rounder.rounder(calc.calcFinalDeliveryCost(calc.calcCost(calc.calcAllWeight(order.getWeight()),
+                                    order.getPrice()), calc.calcCourierOrderCountryRate(fastOrder.getRange())),
+                            ROUND_PATTERN));
             case 3 -> {
 
                 switch (postOrder.getPostsType()) {
                     case 1 -> {
                         CountryOrderType countryOrderType = new CountryOrderType();
-                        cost = calc.calcCost(order.getWeight(), order.getPrice());
                         countryOrderType.doSwitchCountryOrderType();
-                        rate = calc.findsCountryPostRate(countryOrderType.getChoose());
-                        fullCost = calc.calcFinalDeliveryCost(cost, rate);
                         Outputs.getOutputsComplexOrder(cargo.getName(), orderType.getOrderType(),
                                 countryOrderType.getDeliveryRegion(), order.getQuantity(),
-                                Rounder.rounder(calc.getAllWeight(), ROUND_PATTERN_WEIGHT),
-                                Rounder.rounder(fullCost, ROUND_PATTERN));
+                                Rounder.rounder(calc.calcAllWeight(order.getWeight()), ROUND_PATTERN_WEIGHT),
+                                Rounder.rounder(calc.calcFinalDeliveryCost
+                                                (calc.calcCost(calc.calcAllWeight(order.getWeight()),
+                                                        order.getPrice()), calc.calcCourierOrderCountryRate
+                                                        (fastOrder.getRange())), ROUND_PATTERN));
                     }
                     case 2 -> {
                         ContinentsType continentsType = new ContinentsType();
-                        cost = calc.calcCost(order.getWeight(), order.getPrice());
                         continentsType.doSwitchContinents();
-                        rate = calc.findContinentsPostRate(continentsType.getChoose());
-                        fullCost = calc.calcFinalDeliveryCost(cost, rate);
                         Outputs.getOutputsComplexOrder(cargo.getName(), orderType.getOrderType(),
                                 continentsType.getDeliveryRegion(), order.getQuantity(),
-                                Rounder.rounder(calc.getAllWeight(), ROUND_PATTERN_WEIGHT),
-                                Rounder.rounder(fullCost, ROUND_PATTERN));
+                                Rounder.rounder(calc.calcAllWeight(order.getWeight()), ROUND_PATTERN_WEIGHT),
+                                Rounder.rounder(calc.calcFinalDeliveryCost
+                                                (calc.calcCost(calc.calcAllWeight(order.getWeight()),
+                                                        order.getPrice()), calc.calcCourierOrderCountryRate
+                                                        (fastOrder.getRange())), ROUND_PATTERN));
                     }
                 }
             }
