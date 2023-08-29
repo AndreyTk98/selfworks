@@ -2,6 +2,7 @@ package sw_extends.order.vievs;
 
 import sw_extends.order.regions.Price_continent;
 import sw_extends.order.utilits.validation.ValidateIntValue;
+
 import java.util.Scanner;
 
 public class ContinentsType {
@@ -30,27 +31,27 @@ public class ContinentsType {
         switch (makeSwitchContinents()) {
             case 1 -> {
                 choose = Price_continent.ASIA;
-                deliveryRegion = "Азия";
+                deliveryRegion = Price_continent.ASIA.getNameContinent();
             }
             case 2 -> {
                 choose = Price_continent.AFRICA;
-                deliveryRegion = "Африка";
+                deliveryRegion = Price_continent.AFRICA.getNameContinent();
             }
             case 3 -> {
                 choose = Price_continent.EU;
-                deliveryRegion = "Страны Евросоюза";
+                deliveryRegion = Price_continent.EU.getNameContinent();
             }
             case 4 -> {
                 choose = Price_continent.OTHER_EUROPEAN_COUNTRIES;
-                deliveryRegion = "Страны Европы не входящие в ЕС";
+                deliveryRegion = Price_continent.OTHER_EUROPEAN_COUNTRIES.getNameContinent();
             }
             case 5 -> {
                 choose = Price_continent.NORTH_AMERICA;
-                deliveryRegion = "Северная Америка";
+                deliveryRegion = Price_continent.NORTH_AMERICA.getNameContinent();
             }
             case 6 -> {
                 choose = Price_continent.SOUTH_AMERICA;
-                deliveryRegion = "Южная Америка";
+                deliveryRegion = Price_continent.SOUTH_AMERICA.getNameContinent();
             }
         }
     }

@@ -56,37 +56,38 @@ public class OrderType {
                 SwitchPostType switchPostType = new SwitchPostType();
                 switchPostType.makePostType(scanner);
                 order.setOrderType("Частная почтовая организация");
-                }
             }
         }
-        class SwitchPostType {
+    }
+
+    class SwitchPostType {
 
         // Реализация срочной доставки
-            public void makePostType(Scanner scanner) {
-                title = """
-                        1 - Внутри страны (8$ за кг)
-                        2 - Межнациональная доставка (10$ за кг)
-                        """;
-                System.out.println(title);
-                titleType = 1;
-                int postType = ValidateIntValue.validateIntValue(scanner, titleType);
-                postOrder.setPostsType(postType);
-                if (postType > 0 & postType < 3) {
-                    switch (postType) {
-                        case 1 -> {
-                            price = 8;
-                            order.setPrice(price);
-                        }
-                        case 2 -> {
-                            price = 10;
-                            order.setPrice(price);
-                        }
+        public void makePostType(Scanner scanner) {
+            title = """
+                    1 - Внутри страны (8$ за кг)
+                    2 - Межнациональная доставка (10$ за кг)
+                    """;
+            System.out.println(title);
+            titleType = 1;
+            int postType = ValidateIntValue.validateIntValue(scanner, titleType);
+            postOrder.setPostsType(postType);
+            if (postType > 0 & postType < 3) {
+                switch (postType) {
+                    case 1 -> {
+                        price = 8;
+                        order.setPrice(price);
                     }
-            } else {
-                    title = "Выберите меду 1 и 2";
-                    System.out.println(title);
-                    makePostType(scanner);
+                    case 2 -> {
+                        price = 10;
+                        order.setPrice(price);
+                    }
                 }
+            } else {
+                title = "Выберите меду 1 и 2";
+                System.out.println(title);
+                makePostType(scanner);
+            }
         }
     }
 

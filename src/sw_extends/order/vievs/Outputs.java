@@ -4,8 +4,8 @@ import sw_extends.order.models.Cargo;
 
 public class Outputs {
 
-    public static void getOutputsSimpleOrder (String orderName, String orderType, int quantityOrder, String weight,
-                                              String cost) {
+    public static void getOutputsSimpleOrder(String orderName, String orderType, int quantityOrder, String weight,
+                                             String cost) {
         String title = "Тип доставки: " + orderType + "\n"
                 + "Наименование посылок: " + orderName + "\n"
                 + "Количество посылок: " + quantityOrder + "\n"
@@ -13,8 +13,9 @@ public class Outputs {
                 + "Итоговая цена: " + cost + "(грн)";
         System.out.println(title);
     }
-    public static void getOutputsComplexOrder (String orderName, String orderType, String deliveryType,
-                                               int quantityOrder, String weight, String cost) {
+
+    public static void getOutputsComplexOrder(String orderName, String orderType, String deliveryType,
+                                              int quantityOrder, String weight, String cost) {
         String title = "Тип доставки: " + orderType + "\n"
                 + "Регион: " + deliveryType + "\n"
                 + "Наименование посылок: " + orderName + "\n"

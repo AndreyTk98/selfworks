@@ -8,7 +8,7 @@ public class Calc implements CalcAllWeight, CalcCourierDeliveryRate, FindsCountr
         CalcFinalDeliveryCost, FindsContinentsPostRateCost, CalcCost {
 
     @Override
-    public double calcAllWeight(double [] weights) {
+    public double calcAllWeight(double[] weights) {
         double allWeight = 0;
         for (double i : weights) {
             allWeight += i;
@@ -62,6 +62,7 @@ public class Calc implements CalcAllWeight, CalcCourierDeliveryRate, FindsCountr
         }
         return postRate;
     }
+
     @Override
     public double calcFinalDeliveryCost(double Cost, double rate) {
         return (Cost * rate) + Cost;

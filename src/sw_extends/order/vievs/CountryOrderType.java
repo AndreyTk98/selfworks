@@ -26,15 +26,15 @@ public class CountryOrderType {
         switch (makeSwitchCountryOrderType()) {
             case 1 -> {
                 choose = Price_region.INSIDE_THE_CITY;
-                deliveryRegion = "По Городу";
+                deliveryRegion = Price_region.INSIDE_THE_CITY.getNameRegion();
             }
             case 2 -> {
                 choose = Price_region.INSIDE_THE_REGION;
-                deliveryRegion = "По области";
+                deliveryRegion = Price_region.INSIDE_THE_REGION.getNameRegion();
             }
             case 3 -> {
                 choose = Price_region.INSIDE_THE_COUNTRY;
-                deliveryRegion = "По стране";
+                deliveryRegion = Price_region.INSIDE_THE_COUNTRY.getNameRegion();
             }
         }
     }

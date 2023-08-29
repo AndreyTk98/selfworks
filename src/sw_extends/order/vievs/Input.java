@@ -68,7 +68,7 @@ public class Input {
         titleType = 1;
         int deliveryType = ValidateIntValue.validateIntValue(scanner, titleType);
         postOrder.setDeliveryType(deliveryType);
-        if (deliveryType > 0 & deliveryType <=3) {
+        if (deliveryType > 0 & deliveryType <= 3) {
             orderType.makeSwitchOrder(scanner, deliveryType);
         } else {
             title = "Выберете 1, 2 или 3";

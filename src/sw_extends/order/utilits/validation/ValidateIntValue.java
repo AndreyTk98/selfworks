@@ -8,7 +8,7 @@ public class ValidateIntValue {
     private static String title2;
     private static String title3;
 
-    public static int validateIntValue(Scanner scanner, int titleType){
+    public static int validateIntValue(Scanner scanner, int titleType) {
 
         switch (titleType) {
             case 1 -> {
