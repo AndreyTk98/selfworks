@@ -48,6 +48,7 @@ public class Calc implements CalcAllWeight, CalcCourierDeliveryRate, FindsCountr
         return postRate;
     }
 
+    @Override
     public double findContinentsPostRate(Price_continent continent) {
         double postRate;
         postRate = 0;
