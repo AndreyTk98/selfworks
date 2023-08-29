@@ -23,7 +23,8 @@ public class ContinentsType {
                 6 - Южная Америка
                 """;
         System.out.println(title);
-        return ValidateIntValue.validateIntValue(scanner, 1);
+        int titleType = 1;
+        return ValidateIntValue.validateIntValue(scanner, titleType);
 
     }
 

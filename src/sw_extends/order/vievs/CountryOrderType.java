@@ -19,7 +19,8 @@ public class CountryOrderType {
                 3 - По стране
                 """;
         System.out.println(title);
-        return ValidateIntValue.validateIntValue(scanner, 1);
+        int titleType = 1;
+        return ValidateIntValue.validateIntValue(scanner, titleType);
     }
 
     public void doSwitchCountryOrderType() {
