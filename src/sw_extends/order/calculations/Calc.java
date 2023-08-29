@@ -7,10 +7,9 @@ import sw_extends.order.regions.Price_region;
 public class Calc implements CalcAllWeight, CalcCourierDeliveryRate, FindsCountryPostRateCost,
         CalcFinalDeliveryCost, FindsContinentsPostRateCost, CalcCost {
 
-    private double allWeight;
     @Override
     public double calcAllWeight(double [] weights) {
-        allWeight = 0;
+        double allWeight = 0;
         for (double i : weights) {
             allWeight += i;
         }
