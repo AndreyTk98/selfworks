@@ -1,7 +1,5 @@
 package sw_extends.order.vievs;
 
-import sw_extends.order.models.Cargo;
-
 public class Outputs {
 
     public static void getOutputsSimpleOrder(String orderName, String orderType, int quantityOrder, String weight,
