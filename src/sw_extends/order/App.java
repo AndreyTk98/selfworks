@@ -17,14 +17,16 @@ public class App {
     static double range;
     static int postType;
     static int deliveryType;
+    static String orderType;
+
     public static void main(String[] args) {
         Cargo cargo = new Cargo(name);
-        Order order = new Order(name, price, weight, quantity);
-        FastOrder fastOrder = new FastOrder(name, price, weight, quantity, range);
-        PostOrder postOrder = new PostOrder(name, price, weight, quantity, postType, deliveryType);
+        Order order = new Order(name, price, weight, quantity, orderType);
+        FastOrder fastOrder = new FastOrder(name, price, weight, quantity, orderType, range);
+        PostOrder postOrder = new PostOrder(name, price, weight, quantity, orderType, postType, deliveryType);
         OrderType orderType = new OrderType(order, fastOrder, postOrder);
         Input input = new Input(cargo, order, orderType, postOrder);
-        Controls controls = new Controls(cargo, fastOrder, order, input, orderType, postOrder);
+        Controls controls = new Controls(cargo, fastOrder, order, input, postOrder);
         controls.run();
     }
 }

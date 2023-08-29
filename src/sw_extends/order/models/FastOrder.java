@@ -5,8 +5,8 @@ public class FastOrder extends Order {
     // fastDeliveryCharge - 0,01% за каждые 100м
     private double range;
 
-    public FastOrder(String name, double price, double [] weight, int quantity, double range) {
-        super(name, price, weight, quantity);
+    public FastOrder(String name, double price, double [] weight, int quantity, String orderType, double range) {
+        super(name, price, weight, quantity, orderType);
         this.range = range;
     }
 

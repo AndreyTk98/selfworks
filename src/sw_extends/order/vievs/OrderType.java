@@ -11,16 +11,12 @@ import java.util.Scanner;
 public class OrderType {
 
     protected Order order;
-
     protected FastOrder fastOrder;
-
     protected PostOrder postOrder;
-
     private String title;
-
-    private String orderType;
-
     private double price;
+    private int titleType;
+
 
     public OrderType(Order order, FastOrder fastOrder, PostOrder postOrder) {
         this.order = order;
@@ -36,7 +32,7 @@ public class OrderType {
             case 1 -> {
                 price = 5;
                 order.setPrice(price);
-                orderType = "Национальная почта";
+                order.setOrderType("Национальная почта");
             }
             // Заказ Курьером
             case 2 -> {
@@ -44,21 +40,22 @@ public class OrderType {
                 order.setPrice(price);
                 title = "Введите расстояние(км): ";
                 System.out.println(title);
-                double range = ValidateDoubleValue.validateDoubleValue(scanner, 3);
+                titleType = 3;
+                double range = ValidateDoubleValue.validateDoubleValue(scanner, titleType);
                 if (range >= 40) {
                     title = "Слишком далеко, выберете другой тип доставки";
                     System.out.println(title);
                     makeSwitchOrder(scanner, deliveryType);
                 }
                 fastOrder.setRange(range);
-                orderType = "Курьерская доставка";
+                order.setOrderType("Курьерская доставка");
             }
             // Срочный заказ
             case 3 -> {
                 // Разбитие на типы по дальности(страна или континент)
                 SwitchPostType switchPostType = new SwitchPostType();
                 switchPostType.makePostType(scanner);
-                orderType = "Частная почтовая организация";
+                order.setOrderType("Частная почтовая организация");
                 }
             }
         }
@@ -71,7 +68,8 @@ public class OrderType {
                         2 - Межнациональная доставка (10$ за кг)
                         """;
                 System.out.println(title);
-                int postType = ValidateIntValue.validateIntValue(scanner, 1);
+                titleType = 1;
+                int postType = ValidateIntValue.validateIntValue(scanner, titleType);
                 postOrder.setPostsType(postType);
                 if (postType > 0 & postType < 3) {
                     switch (postType) {
@@ -90,10 +88,6 @@ public class OrderType {
                     makePostType(scanner);
                 }
         }
-    }
-
-    public String getOrderType() {
-        return orderType;
     }
 
 

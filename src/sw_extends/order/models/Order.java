@@ -6,11 +6,14 @@ public class Order extends Cargo {
     private double [] weight;
     private int quantity;
 
-    public Order (String name, double price, double [] weight, int quantity) {
+    private String orderType;
+
+    public Order (String name, double price, double [] weight, int quantity, String orderType) {
         super(name);
         this.price = price;
         this.weight = weight;
         this.quantity = quantity;
+        this.orderType = orderType;
     }
 
     public double getPrice() {
@@ -37,4 +40,11 @@ public class Order extends Cargo {
         this.quantity = quantity;
     }
 
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
 }

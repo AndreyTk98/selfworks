@@ -14,18 +14,15 @@ public class Controls {
     private final FastOrder fastOrder;
     private final Order order;
     private final Input input;
-    private final OrderType orderType;
     private final PostOrder postOrder;
     private final static String ROUND_PATTERN = "0.00";
     private final static String ROUND_PATTERN_WEIGHT = "0.000";
 
-    public Controls(Cargo cargo, FastOrder fastOrder, Order order, Input input, OrderType orderType,
-                    PostOrder postOrder) {
+    public Controls(Cargo cargo, FastOrder fastOrder, Order order, Input input, PostOrder postOrder) {
         this.cargo = cargo;
         this.fastOrder = fastOrder;
         this.order = order;
         this.input = input;
-        this.orderType = orderType;
         this.postOrder = postOrder;
     }
 
@@ -33,11 +30,11 @@ public class Controls {
         input.runInput();
         Calc calc = new Calc();
         switch (postOrder.getDeliveryType()) {
-            case 1 -> Outputs.getOutputsSimpleOrder(cargo.getName(), orderType.getOrderType(), order.getQuantity(),
+            case 1 -> Outputs.getOutputsSimpleOrder(cargo.getName(), order.getOrderType(), order.getQuantity(),
                     Rounder.rounder(calc.calcAllWeight(order.getWeight()), ROUND_PATTERN_WEIGHT),
                     Rounder.rounder(calc.calcCost(calc.calcAllWeight
                             (order.getWeight()), order.getPrice()), ROUND_PATTERN));
-            case 2 -> Outputs.getOutputsSimpleOrder(cargo.getName(), orderType.getOrderType(), order.getQuantity(),
+            case 2 -> Outputs.getOutputsSimpleOrder(cargo.getName(), order.getOrderType(), order.getQuantity(),
                     Rounder.rounder(calc.calcAllWeight(order.getWeight()), ROUND_PATTERN_WEIGHT),
                     Rounder.rounder(calc.calcFinalDeliveryCost(calc.calcCost
                                     (calc.calcAllWeight(order.getWeight()), order.getPrice()),
@@ -48,7 +45,7 @@ public class Controls {
                     case 1 -> {
                         CountryOrderType countryOrderType = new CountryOrderType();
                         countryOrderType.doSwitchCountryOrderType();
-                        Outputs.getOutputsComplexOrder(cargo.getName(), orderType.getOrderType(),
+                        Outputs.getOutputsComplexOrder(cargo.getName(), order.getOrderType(),
                                 countryOrderType.getDeliveryRegion(), order.getQuantity(),
                                 Rounder.rounder(calc.calcAllWeight(order.getWeight()), ROUND_PATTERN_WEIGHT),
                                 Rounder.rounder(calc.calcFinalDeliveryCost
@@ -59,7 +56,7 @@ public class Controls {
                     case 2 -> {
                         ContinentsType continentsType = new ContinentsType();
                         continentsType.doSwitchContinents();
-                        Outputs.getOutputsComplexOrder(cargo.getName(), orderType.getOrderType(),
+                        Outputs.getOutputsComplexOrder(cargo.getName(), order.getOrderType(),
                                 continentsType.getDeliveryRegion(), order.getQuantity(),
                                 Rounder.rounder(calc.calcAllWeight(order.getWeight()), ROUND_PATTERN_WEIGHT),
                                 Rounder.rounder(calc.calcFinalDeliveryCost

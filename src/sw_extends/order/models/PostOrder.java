@@ -2,11 +2,11 @@ package sw_extends.order.models;
 
 public class PostOrder extends Order {
     private int postsType;
-
     private int deliveryType;
     public PostOrder
-            (String name, double price, double [] weight, int quantity, int postsType, int deliveryType) {
-        super(name, price, weight, quantity);
+            (String name, double price, double [] weight, int quantity, String orderType,
+             int postsType, int deliveryType) {
+        super(name, price, weight, quantity, orderType);
         this.postsType = postsType;
         this.deliveryType = deliveryType;
     }

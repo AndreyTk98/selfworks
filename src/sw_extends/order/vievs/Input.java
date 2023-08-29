@@ -16,6 +16,8 @@ public class Input {
     private final OrderType orderType;
     private final PostOrder postOrder;
 
+    private int titleType;
+
     public Input(Cargo cargo, Order order, OrderType orderType, PostOrder postOrder) {
         this.cargo = cargo;
         this.order = order;
@@ -40,7 +42,8 @@ public class Input {
 
         title = "Количество посылок: ";
         System.out.println(title);
-        int quantity = ValidateIntValue.validateIntValue(scanner, 2);
+        titleType = 2;
+        int quantity = ValidateIntValue.validateIntValue(scanner, titleType);
         double[] weights = new double[quantity];
         order.setQuantity(quantity);
 
@@ -48,7 +51,7 @@ public class Input {
         System.out.println(title);
         for (i = 0; i < quantity; ++i) {
             System.out.println("Посылка №" + (1 + i));
-            weights[i] = ValidateDoubleValue.validateDoubleValue(scanner, 2);
+            weights[i] = ValidateDoubleValue.validateDoubleValue(scanner, titleType);
             order.setWeight(weights);
         }
     }
@@ -62,7 +65,8 @@ public class Input {
                     Межнациональная доставка(10$ за кг) + наценка в зависимости от континента
                 """;
         System.out.println(title);
-        int deliveryType = ValidateIntValue.validateIntValue(scanner, 1);
+        titleType = 1;
+        int deliveryType = ValidateIntValue.validateIntValue(scanner, titleType);
         postOrder.setDeliveryType(deliveryType);
         if (deliveryType > 0 & deliveryType <=3) {
             orderType.makeSwitchOrder(scanner, deliveryType);
