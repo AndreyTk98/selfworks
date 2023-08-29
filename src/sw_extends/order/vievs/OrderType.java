@@ -20,11 +20,7 @@ public class OrderType {
 
     private String orderType;
 
-    private String privateOrderType;
-
     private double price;
-
-    private int postType;
 
     public OrderType(Order order, FastOrder fastOrder, PostOrder postOrder) {
         this.order = order;
@@ -45,8 +41,9 @@ public class OrderType {
             // Заказ Курьером
             case 2 -> {
                 price = 6;
-                fastOrder.setPrice(price);
+                order.setPrice(price);
                 title = "Введите расстояние(км): ";
+                System.out.println(title);
                 double range = ValidateDoubleValue.validateDoubleValue(scanner, 3);
                 if (range >= 40) {
                     title = "Слишком далеко, выберете другой тип доставки";
@@ -74,19 +71,17 @@ public class OrderType {
                         2 - Межнациональная доставка (10$ за кг)
                         """;
                 System.out.println(title);
-                postType = ValidateIntValue.validateIntValue(scanner, 1);
+                int postType = ValidateIntValue.validateIntValue(scanner, 1);
                 postOrder.setPostsType(postType);
                 if (postType > 0 & postType < 3) {
                     switch (postType) {
                         case 1 -> {
                             price = 8;
                             order.setPrice(price);
-                            privateOrderType = "внутри страны";
                         }
                         case 2 -> {
                             price = 10;
                             order.setPrice(price);
-                            privateOrderType = "межнациональная доставка";
                         }
                     }
             } else {
@@ -101,11 +96,5 @@ public class OrderType {
         return orderType;
     }
 
-    public String getPrivateOrderType() {
-        return privateOrderType;
-    }
 
-    public int getPostType() {
-        return postType;
-    }
 }

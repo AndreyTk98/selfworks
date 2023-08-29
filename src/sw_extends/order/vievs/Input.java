@@ -2,6 +2,7 @@ package sw_extends.order.vievs;
 
 import sw_extends.order.models.Cargo;
 import sw_extends.order.models.Order;
+import sw_extends.order.models.PostOrder;
 import sw_extends.order.utilits.validation.*;
 
 import java.util.Scanner;
@@ -12,13 +13,14 @@ public class Input {
     protected Cargo cargo;
     protected Order order;
     private String title;
-    private int deliveryType;
     private final OrderType orderType;
+    private final PostOrder postOrder;
 
-    public Input(Cargo cargo, Order order, OrderType orderType) {
+    public Input(Cargo cargo, Order order, OrderType orderType, PostOrder postOrder) {
         this.cargo = cargo;
         this.order = order;
         this.orderType = orderType;
+        this.postOrder = postOrder;
     }
 
     public void runInput() {
@@ -55,23 +57,20 @@ public class Input {
         title = """
                 Выберете доставщика:
                 1 - Национальная почта, 5$ за кг груза
-                2 - Курьер, 6$ за кг + процент от дальности доставки(только в Рамках города(не более 20км)
+                2 - Курьер, 6$ за кг + процент от дальности доставки(только в Рамках города(не более 40км)
                 3 - Частная почтовая организация, внутри страны(8$ а кг) + наценка за расстояние
                     Межнациональная доставка(10$ за кг) + наценка в зависимости от континента
                 """;
         System.out.println(title);
-        deliveryType = ValidateIntValue.validateIntValue(scanner, 1);
-        scanner.close();
+        int deliveryType = ValidateIntValue.validateIntValue(scanner, 1);
+        postOrder.setDeliveryType(deliveryType);
         if (deliveryType > 0 & deliveryType <=3) {
             orderType.makeSwitchOrder(scanner, deliveryType);
         } else {
             title = "Выберете 1, 2 или 3";
             System.out.println(title);
             chooseOrder();
+            scanner.close();
         }
-    }
-
-    public int getDeliveryType() {
-        return deliveryType;
     }
 }
